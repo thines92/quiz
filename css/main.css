@@ -1,3 +1,28 @@
+.container {
+  width: 50%;
+  margin-left: 25%; }
 
+#questions {
+  width: 100%; }
+
+form {
+  width: 100%;
+  clear: both; }
+
+input[type="radio"] {
+  position: relative;
+  margin-left: 45%;
+  float: left;
+  margin-top: 1em; }
+
+input[type="radio"]:nth-child(2n+1) {
+  margin-right: 45%;
+  margin-left: 0; }
+
+input[type=button] {
+  clear: both;
+  display: block;
+  position: relative;
+  margin-top: 2em; }
 
 /*# sourceMappingURL=main.css.map */

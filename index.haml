@@ -4,13 +4,15 @@
     %title JavaScript Quiz
     %link(type="text/css" rel="stylesheet" href="css/main.css")
   %body
-    %container
+    %div.container
       %section#questions
         %form
           %label#questionLabel
+            Question 1
             %input(type="radio" name="question1" value="")
             %input(type="radio" name="question2" value="")
             %input(type="radio" name="question3" value="")
             %input(type="radio" name="question4" value="")
+            %div(style="clear:both")
             %input(type="button" name="submitButton" value="Submit")
   %script(href="js/javascript.js")
