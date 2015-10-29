@@ -3,23 +3,23 @@
   <head>
     <title>JavaScript Quiz</title>
     <link href='css/main.css' rel='stylesheet' type='text/css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   </head>
   <body>
     <div class='container'>
       <section id='questions'>
         <form>
           <label id='questionLabel'>
-            Question 1
-            <input name='question1' type='radio' value=''>
-            <input name='question2' type='radio' value=''>
-            <input name='question3' type='radio' value=''>
-            <input name='question4' type='radio' value=''>
+            <input id='question1' type='radio'>
+            <input id='question2' type='radio' value=''>
+            <input id='question3' type='radio' value=''>3</input>
+            <input id='question4' type='radio'>
             <div style='clear:both'></div>
-            <input name='submitButton' type='button' value='Submit'>
+            <input id='submitButton' type='button' value='Submit'>
           </label>
         </form>
       </section>
     </div>
   </body>
-  <script href='js/javascript.js'></script>
+  <script src='js/javascript.js'></script>
 </html>
