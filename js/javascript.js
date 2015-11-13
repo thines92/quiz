@@ -3,9 +3,9 @@
  */
 
 var allQuestions = [
-  {question1: "What is 1 + 1?", choices: [ "1", "2", "3", 4 ], correctAnswer: ["2"]},
-  {question2: "What is 2 + 2?", choices: ["6", "2", "3", 4,], correctAnswer: ["4"]},
-  {question3: "What is 3 + 3?", choices: ["3", "6", "9", 12], correctAnswer: ["6"]}
+  {question: "What is 1 + 1?", choices: [ 1, 2, 3, 4 ], correctAnswer: [2]},
+  {question: "What is 2 + 2?", choices: [6, 2, 3, 4,], correctAnswer: [4]},
+  {question: "What is 3 + 3?", choices: [3, 6, 9, 12], correctAnswer: [6]}
 ];
 
 var newArray = shuffleArray(allQuestions);
@@ -22,11 +22,11 @@ function shuffleArray(array) {
 
 function appendQuestions(number) {
   if (newArray == "undefined" || newArray == "null" || newArray.length == 0) {
-    document.getElementById("questionList").innerHTML = "Complete!";
+    document.getElementById("questionForm").innerHTML = "Complete!";
   } else {
       for (i = 0; i < 4; i++) {
-        $("#questionList").append("<input name='question' type='radio'>" +
-         JSON.stringify(newArray[0].choices[i]) + "</input>")
+        $("#questionForm").append("<input name='question' type='radio' value='" +
+         JSON.stringify(newArray[0].choices[i]) + "'>" + JSON.stringify(newArray[0].choices[i]) )
        }
      }
 }
@@ -34,11 +34,12 @@ function appendQuestions(number) {
 $(function () {
   $("#questionList").empty();
   appendQuestions();
-  newArray.shift();
 })
+alert(newArray[0].correctAnswer);
 
 function isCorrectAnswer() {
-  if ($("input[type=radio]:checked").val() == newArray[0].correctAnswer) {
+  checkedVal = $("input[name=question]:checked").val();
+  if (checkedVal == newArray[0].correctAnswer) {
     alert("Correct!");
   } else {
     alert("Wrong!");
@@ -47,7 +48,7 @@ function isCorrectAnswer() {
 
 $("#submitButton").click(function() {
   isCorrectAnswer();
-  $("#questionList").empty();
-  appendQuestions();
+  $("#questionForm").empty();
   newArray.shift();
+  appendQuestions();
 })
