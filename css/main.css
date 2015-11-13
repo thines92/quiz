@@ -9,10 +9,13 @@ form {
   width: 100%;
   clear: both; }
 
+label {
+  clear: both;
+  width: auto; }
+
 input[type=button] {
   clear: both;
   display: block;
-  position: relative;
-  margin-top: 2em; }
+  position: relative; }
 
 /*# sourceMappingURL=main.css.map */

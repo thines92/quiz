@@ -3,9 +3,9 @@
  */
 
 var allQuestions = [
-  {question1: "What is 1 + 1?", choices: [ "1", "2", "3", "4" ], correctAnswer: ["2"]},
-  {question2: "What is 2 + 2?", choices: ["6", "2", "3", "4",], correctAnswer: ["4"]},
-  {question3: "What is 3 + 3?", choices: ["3", "6", "9", "12"], correctAnswer: ["6"]}
+  {question1: "What is 1 + 1?", choices: [ "1", "2", "3", 4 ], correctAnswer: ["2"]},
+  {question2: "What is 2 + 2?", choices: ["6", "2", "3", 4,], correctAnswer: ["4"]},
+  {question3: "What is 3 + 3?", choices: ["3", "6", "9", 12], correctAnswer: ["6"]}
 ];
 
 var newArray = shuffleArray(allQuestions);
@@ -31,17 +31,15 @@ function appendQuestions(number) {
      }
 }
 
-function isCorrectAnswer() {
-  if ($("input[type=radio]:checked").val() == newArray[0].correctAnswer) {
-    alert("Correct!");
-  } else {
-    alert("Wrong!");
-  }
-}
-
-$("#submitButton").click(function () {
+$(function () {
   $("#questionList").empty();
   appendQuestions();
   newArray.shift();
+})
+
+$("#submitButton").click(function() {
   isCorrectAnswer();
+  $("#questionList").empty();
+  appendQuestions();
+  newArray.shift();
 })
