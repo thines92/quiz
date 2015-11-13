@@ -2,9 +2,11 @@
  * Created by tyler on 10/28/15.
  */
 
-var allQuestions = [{question1: "What is 1 + 1?", choices: [ "1", "2", "3", "4" ]},
-  {question2: "What is 2 + 2?", choices: ["6", "2", "3", "4",]},
-  {question3: "What is 3 + 3?", choices: ["3", "6", "9", "12"]}];
+var allQuestions = [
+  {question1: "What is 1 + 1?", choices: [ "1", "2", "3", "4" ], correctAnswer: ["2"]},
+  {question2: "What is 2 + 2?", choices: ["6", "2", "3", "4",], correctAnswer: ["4"]},
+  {question3: "What is 3 + 3?", choices: ["3", "6", "9", "12"], correctAnswer: ["6"]}
+];
 
 var newArray = shuffleArray(allQuestions);
 
@@ -23,15 +25,23 @@ function appendQuestions(number) {
     document.getElementById("questionList").innerHTML = "Complete!";
   } else {
       for (i = 0; i < 4; i++) {
-        $("#questionList").append("<input id='question1' type='radio'>" +
+        $("#questionList").append("<input name='question' type='radio'>" +
          JSON.stringify(newArray[0].choices[i]) + "</input>")
        }
-  }
+     }
 }
 
+function isCorrectAnswer() {
+  if ($("input[type=radio]:checked").val() == newArray[0].correctAnswer) {
+    alert("Correct!");
+  } else {
+    alert("Wrong!");
+  }
+}
 
 $("#submitButton").click(function () {
   $("#questionList").empty();
   appendQuestions();
   newArray.shift();
+  isCorrectAnswer();
 })
