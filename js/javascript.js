@@ -31,12 +31,6 @@ function appendQuestions(number) {
      }
 }
 
-$(function () {
-  $("#questionList").empty();
-  appendQuestions();
-})
-alert(newArray[0].correctAnswer);
-
 function isCorrectAnswer() {
   checkedVal = $("input[name=question]:checked").val();
   if (checkedVal == newArray[0].correctAnswer) {
@@ -45,6 +39,11 @@ function isCorrectAnswer() {
     alert("Wrong!");
   }
 }
+
+$(function () {
+  $("#questionList").empty();
+  appendQuestions();
+})
 
 $("#submitButton").click(function() {
   isCorrectAnswer();
