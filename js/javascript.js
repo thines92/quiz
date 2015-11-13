@@ -37,6 +37,14 @@ $(function () {
   newArray.shift();
 })
 
+function isCorrectAnswer() {
+  if ($("input[type=radio]:checked").val() == newArray[0].correctAnswer) {
+    alert("Correct!");
+  } else {
+    alert("Wrong!");
+  }
+}
+
 $("#submitButton").click(function() {
   isCorrectAnswer();
   $("#questionList").empty();
