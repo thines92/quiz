@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title JavaScript Quiz
+    %link{:href => "css/main.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"}
+  %body
+    .container
+      %section#questions
+        #questionLabel
+        %form#questionForm
+        %div{:style => "clear:both"}
+        %input#backButton{:type => "button", :value => "Back"}/
+        %input#submitButton{:type => "button", :value => "Submit"}/
+  %script{:src => "js/build/production.min.js"}

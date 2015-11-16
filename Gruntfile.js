@@ -1,11 +1,11 @@
 module.exports = function(grunt) {
 
-    // 1. All configuration goes here 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+// 1. All configuration goes here
+grunt.initConfig({
+  pkg: grunt.file.readJSON('package.json'),
 
-        concat: {
-            // 2. Configuration for concatinating files goes here.
+  concat: {
+      // 2. Configuration for concatinating files goes here.
 		dist: {
 			src: [
 				'js/libs/*.js', // All JS in the libs folder
@@ -14,14 +14,14 @@ module.exports = function(grunt) {
 			dest: 'js/build/production.js',
 		}
         },
-	
+
 	uglify: {
 		build: {
 			src: 'js/build/production.js',
 			dest: 'js/build/production.min.js'
 		}
 	},
-	
+
 	imagemin: {
 		dynamic: {
 			files: [{
@@ -32,8 +32,11 @@ module.exports = function(grunt) {
 			}]
 		}
 	},
-	
+
 	watch: {
+		options: {
+				livereload: true,
+		},
 		scripts: {
 			files: ['js/*.js'],
         		tasks: ['concat', 'uglify'],
@@ -47,6 +50,10 @@ module.exports = function(grunt) {
     			options: {
         			spawn: false,
    			 }
+		},
+    styles: {
+			files: ['main.css'],
+			tasks: ['autoprefixer']
 		}
 	},
 
@@ -56,19 +63,40 @@ module.exports = function(grunt) {
             			style: 'compressed'
        			 },
         		files: {
-            			'css/build/global.css': 'css/global.scss'
+            			'css/build/main.css': 'css/main.sass'
        			 }
-    		} 
-	}
+    		}
+	},
+	autoprefixer: {
+    options: {
+        browsers: ['last 2 versions', 'ie 8', 'ie 9', '> 1%']
+    },
+    main: {
+        expand: true,
+        flatten: true,
+        src: 'css/*.css',
+        dest: 'dist/'
+    }
+	},
+  haml: {
+    dist: {
+      files: {
+        'index.html': 'index.haml',
+      }
+    }
+  }
+});
 
-    });
+// 3. Where we tell Grunt we plan to use this plug-in.
+grunt.loadNpmTasks('grunt-contrib-concat');
+grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-contrib-imagemin');
+grunt.loadNpmTasks('grunt-contrib-sass');
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-autoprefixer');
+grunt.loadNpmTasks('grunt-contrib-haml');
 
-    // 3. Where we tell Grunt we plan to use this plug-in.
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
-
-    // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['concat', 'uglify', 'imagemin']);
+// 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
+grunt.registerTask('default', ['concat', 'uglify', 'imagemin', 'sass', 'watch', 'autoprefixer', 'haml']);
 
 };
