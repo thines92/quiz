@@ -3,7 +3,7 @@
  */
 
 var allQuestions = [
-  {question: "What is 1 + 1?", choices: [ 1, 2, 3, 4 ], correctAnswer: [2]},
+  {question: "What is 1 + 1?", choices: [ 1, 2, 3, 4 ], correctAnswer: [2] },
   {question: "What is 2 + 2?", choices: [6, 2, 3, 4,], correctAnswer: [4]},
   {question: "What is 3 + 3?", choices: [3, 6, 9, 12], correctAnswer: [6]}
 ];
@@ -57,6 +57,7 @@ function isCorrectAnswer() {
   if (checkedVal == newArray[appendQuestionsCount].correctAnswer) {
     correctAnswer++
   }
+  newArray[appendQuestionsCount].selectedAnswer = $("input[type=radio]:checked");
   appendQuestionsCount++;
 }
 
