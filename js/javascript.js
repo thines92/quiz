@@ -35,6 +35,8 @@ function appendQuestions(number) {
       document.getElementById("questionLabel").innerHTML =
         newArray[appendQuestionsCount].question;
 
+      $("#questionForm").empty();
+
         //Append 4 radio buttons with the corresponding answers
       for (i = 0; i < 4; i++) {
         $("#questionForm").append("<input name='question' type='radio' value='" +
@@ -42,6 +44,12 @@ function appendQuestions(number) {
           + JSON.stringify(newArray[appendQuestionsCount].choices[i]) )
        }
      }
+}
+
+function showPreviousQuestion() {
+  appendQuestionsCount--;
+  correctAnswer--;
+  appendQuestions();
 }
 
 function isCorrectAnswer() {
@@ -63,7 +71,6 @@ function isFormValid() {
   }
   else {
     isCorrectAnswer();
-    $("#questionForm").empty();
     appendQuestions();
   }
 }
@@ -75,4 +82,8 @@ $(function () {
 
 $("#submitButton").click(function() {
   isFormValid();
+})
+
+$("#backButton").click(function() {
+  showPreviousQuestion();
 })
