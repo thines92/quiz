@@ -10,6 +10,10 @@ var allQuestions = [
 
 var newArray = shuffleArray(allQuestions);
 
+
+var correctAnswer = 0;
+
+//Shuffles the original allQuestions array to put the questions in random order
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -21,10 +25,15 @@ function shuffleArray(array) {
 }
 
 function appendQuestions(number) {
-  document.getElementById("questionLabel").innerHTML = newArray[0].question;
+  //Append 4 radio buttons with the corresponding answers
   if (newArray == "undefined" || newArray == "null" || newArray.length == 0) {
     document.getElementById("questionForm").innerHTML = "Complete!";
+    quizScoreTotal();
+    alert(allQuestions.length);
   } else {
+      //Show question label
+      document.getElementById("questionLabel").innerHTML = newArray[0].question;
+
       for (i = 0; i < 4; i++) {
         $("#questionForm").append("<input name='question' type='radio' value='" +
          JSON.stringify(newArray[0].choices[i]) + "'>" + JSON.stringify(newArray[0].choices[i]) )
@@ -33,14 +42,17 @@ function appendQuestions(number) {
 }
 
 function isCorrectAnswer() {
+
   checkedVal = $("input[name=question]:checked").val();
   if (checkedVal == newArray[0].correctAnswer) {
-    alert("Correct!");
-  } else {
-    alert("Wrong!");
+    correctAnswer++
   }
 }
 
+function quizScoreTotal(correctAnswer) {
+  quizScore = (correctAnswer / allQuestions.length) * 100;
+  return quizScore;
+}
 $(function () {
   $("#questionList").empty();
   appendQuestions();
