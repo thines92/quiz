@@ -21,6 +21,7 @@ function shuffleArray(array) {
 }
 
 function appendQuestions(number) {
+  document.getElementById("questionLabel").innerHTML = newArray[0].question;
   if (newArray == "undefined" || newArray == "null" || newArray.length == 0) {
     document.getElementById("questionForm").innerHTML = "Complete!";
   } else {
