@@ -26,7 +26,6 @@ function shuffleArray(array) {
 }
 
 function appendQuestions(number) {
-  //Append 4 radio buttons with the corresponding answers
   if (appendQuestionsCount == newArray.length) {
     $("#questionLabel").empty();
     quizScoreTotal();
@@ -36,6 +35,7 @@ function appendQuestions(number) {
       document.getElementById("questionLabel").innerHTML =
         newArray[appendQuestionsCount].question;
 
+        //Append 4 radio buttons with the corresponding answers
       for (i = 0; i < 4; i++) {
         $("#questionForm").append("<input name='question' type='radio' value='" +
          JSON.stringify(newArray[appendQuestionsCount].choices[i]) + "'>"
@@ -45,7 +45,6 @@ function appendQuestions(number) {
 }
 
 function isCorrectAnswer() {
-
   checkedVal = $("input[name=question]:checked").val();
   if (checkedVal == newArray[appendQuestionsCount].correctAnswer) {
     correctAnswer++
@@ -58,13 +57,22 @@ function quizScoreTotal() {
   return quizScore;
 }
 
+function isFormValid() {
+  if(!$("input[type=radio]:checked").val()) {
+    alert("You must select an answer before continuing!");
+  }
+  else {
+    isCorrectAnswer();
+    $("#questionForm").empty();
+    appendQuestions();
+  }
+}
+
 $(function () {
   $("#questionForm").empty();
   appendQuestions();
 })
 
 $("#submitButton").click(function() {
-  isCorrectAnswer();
-  $("#questionForm").empty();
-  appendQuestions();
+  isFormValid();
 })
