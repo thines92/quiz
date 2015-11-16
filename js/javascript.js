@@ -29,8 +29,8 @@ function appendQuestions(number) {
   //Append 4 radio buttons with the corresponding answers
   if (appendQuestionsCount == newArray.length) {
     $("#questionLabel").empty();
-    document.getElementById("questionForm").innerHTML = "Complete!";
     quizScoreTotal();
+    document.getElementById("questionForm").innerHTML = "Your final score is %" + quizScore;
   } else {
       //Show question label
       document.getElementById("questionLabel").innerHTML =
