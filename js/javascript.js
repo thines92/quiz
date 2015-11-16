@@ -10,8 +10,9 @@ var allQuestions = [
 
 var newArray = shuffleArray(allQuestions);
 
-
 var correctAnswer = 0;
+
+var appendQuestionsCount = 0;
 
 //Shuffles the original allQuestions array to put the questions in random order
 function shuffleArray(array) {
@@ -26,17 +27,19 @@ function shuffleArray(array) {
 
 function appendQuestions(number) {
   //Append 4 radio buttons with the corresponding answers
-  if (newArray == "undefined" || newArray == "null" || newArray.length == 0) {
+  if (appendQuestionsCount == newArray.length) {
+    $("#questionLabel").empty();
     document.getElementById("questionForm").innerHTML = "Complete!";
     quizScoreTotal();
-    alert(allQuestions.length);
   } else {
       //Show question label
-      document.getElementById("questionLabel").innerHTML = newArray[0].question;
+      document.getElementById("questionLabel").innerHTML =
+        newArray[appendQuestionsCount].question;
 
       for (i = 0; i < 4; i++) {
         $("#questionForm").append("<input name='question' type='radio' value='" +
-         JSON.stringify(newArray[0].choices[i]) + "'>" + JSON.stringify(newArray[0].choices[i]) )
+         JSON.stringify(newArray[appendQuestionsCount].choices[i]) + "'>"
+          + JSON.stringify(newArray[appendQuestionsCount].choices[i]) )
        }
      }
 }
@@ -44,23 +47,24 @@ function appendQuestions(number) {
 function isCorrectAnswer() {
 
   checkedVal = $("input[name=question]:checked").val();
-  if (checkedVal == newArray[0].correctAnswer) {
+  if (checkedVal == newArray[appendQuestionsCount].correctAnswer) {
     correctAnswer++
   }
+  appendQuestionsCount++;
 }
 
-function quizScoreTotal(correctAnswer) {
-  quizScore = (correctAnswer / allQuestions.length) * 100;
+function quizScoreTotal() {
+  quizScore = correctAnswer / allQuestions.length * 100;
   return quizScore;
 }
+
 $(function () {
-  $("#questionList").empty();
+  $("#questionForm").empty();
   appendQuestions();
 })
 
 $("#submitButton").click(function() {
   isCorrectAnswer();
   $("#questionForm").empty();
-  newArray.shift();
   appendQuestions();
 })
