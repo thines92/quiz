@@ -97,6 +97,6 @@ grunt.loadNpmTasks('grunt-autoprefixer');
 grunt.loadNpmTasks('grunt-contrib-haml');
 
 // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-grunt.registerTask('default', ['concat', 'uglify', 'imagemin', 'sass', 'watch', 'autoprefixer', 'haml']);
+grunt.registerTask('default', ['concat', 'uglify', 'imagemin', 'sass', 'autoprefixer', 'haml']);
 
 };
