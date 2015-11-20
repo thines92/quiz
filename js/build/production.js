@@ -2,11 +2,15 @@
  * Created by tyler on 10/28/15.
  */
 
+
+
 var allQuestions = [
   {question: "What is 1 + 1?", choices: [ 1, 2, 3, 4 ], correctAnswer: [2] },
   {question: "What is 2 + 2?", choices: [6, 2, 3, 4,], correctAnswer: [4]},
   {question: "What is 3 + 3?", choices: [3, 6, 9, 12], correctAnswer: [6]}
-];
+]
+
+
 
 var newArray = shuffleArray(allQuestions);
 
